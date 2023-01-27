@@ -142,6 +142,35 @@ class Product
         return $this;
     }
 
+    public function readById($id)
+    {
+
+        $connect = new Connect();
+        $con = $connect->db_connect();
+        $query =  pg_query_params($con, 'SELECT * FROM products Where "ProductID" = $1', array($id));
+        if (!$query) {
+            die("Ошибка выполнения запроса");
+        }
+        $result = pg_fetch_array($query);
+        $this->id = $result[0];
+        $this->name = $result[1];
+        $this->price = $result[2];
+        $this->count = $result[3];
+        $this->description = $result[4];
+        $this->mainImage = $result[5];
+        $this->categoryID = $result[6];
+
+        $arr = trim($result['ProductImages'], "{}"); // delete {} from arr
+        $imgs = explode(",",$arr); //  breaks a string into array
+        $this->images = $imgs;
+
+
+
+        $connect = $connect->db_close();
+
+        return $this;
+    }
+
     public function update(int $id, array $data)
     {
 

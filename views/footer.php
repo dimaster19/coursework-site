@@ -162,6 +162,8 @@
 
     <script src="../public/js/dropdown.js"></script>
     <script src="../public/js/carousel.js"></script>
+    <script src="../public/js/addToCart.js"></script>
+
 </body>
 
 </html>

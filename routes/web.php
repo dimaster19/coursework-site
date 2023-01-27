@@ -11,3 +11,5 @@ $routes->add('signin', new Route(constant('URL_SUBFOLDER') . '/signin', array('c
 $routes->add('profile', new Route(constant('URL_SUBFOLDER') . '/profile', array('controller' => 'UserController', 'method'=>'showProfile'), array()));
 $routes->add('login', new Route(constant('URL_SUBFOLDER') . '/login', array('controller' => 'UserController', 'method'=>'checkUser'), array()));
 $routes->add('logout', new Route(constant('URL_SUBFOLDER') . '/logout', array('controller' => 'UserController', 'method'=>'logOut'), array()));
+$routes->add('cart', new Route(constant('URL_SUBFOLDER') . '/cart', array('controller' => 'CartController', 'method'=>'showPage'), array()));
+$routes->add('addtocart', new Route(constant('URL_SUBFOLDER') . '/addtocart', array('controller' => 'CartController', 'method'=>'start'), array()));

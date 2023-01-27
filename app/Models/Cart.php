@@ -1,20 +1,27 @@
 <?php
-class CartController
+namespace App\Models;
+
+class Cart
 {
     public $productID = '';
 
-    public function __construct($id)
+    function addToCart($id)
     {
-        session_start();
-        $this->productID = $id;
-    }
-    function addToCart()
-    {
-        $_SESSION['cart'] = [
-            "id" => $this->productID
+
+        $_SESSION['cart'][$id] = [
+            "id" => $id
         ];
+
+        if (isset( $_SESSION['cart-count'])){
+            ++$_SESSION['cart-count'];
+        }
+        else {
+            $_SESSION['cart-count'] = 1;
+        }
+
+
     }
-    function delFromCart()
+    function delFromCart($id)
     {
     }
 }

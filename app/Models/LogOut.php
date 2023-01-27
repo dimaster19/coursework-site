@@ -1,4 +1,7 @@
 <?php
+
+namespace App\Models;
+
 class LogOut {
 
     function __construct()

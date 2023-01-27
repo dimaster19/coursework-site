@@ -123,7 +123,7 @@
                 <div class="product-price"><? echo $result[2] ?>&nbsp&#8381</div>
                 <div class="product-name"><a href="/product/<? echo str_replace(" ", "-", $result[1]) ?>"><? echo $result[1] ?></a></div>
                 <div class="add-product">
-                    <a href="cart/<? echo $result[0] ?>" class="add-product-link">В корзину
+                    <a href=""  data-id="<? echo $result[0] ?>" class="add-product-link">В корзину
                     </a>
                 </div>
             </div>
