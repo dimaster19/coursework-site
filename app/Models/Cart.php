@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 class Cart
@@ -12,14 +13,28 @@ class Cart
             "id" => $id
         ];
 
-        if (isset( $_SESSION['cart-count'])){
-            ++$_SESSION['cart-count'];
-        }
-        else {
+        if (isset($_SESSION['cart-count'])) {
+            $arr = [];
+            if (isset($_SESSION['repeatedCart'])) {
+
+                array_walk_recursive($_SESSION['repeatedCart'], function ($item, $key) use (&$arr) { // Двумерный массив в одномерный
+                    $arr[] = $item;
+                });
+            }
+
+            if (in_array((string)$id,  $arr)) {
+
+            } else {
+                ++$_SESSION['cart-count'];
+            }
+
+            $_SESSION['repeatedCart'] = $_SESSION['cart'];
+
+        } else {
             $_SESSION['cart-count'] = 1;
+            $_SESSION['repeatedCart'] = $_SESSION['cart'];
+
         }
-
-
     }
     function delFromCart($id)
     {

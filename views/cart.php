@@ -22,7 +22,7 @@
                         <p><? echo $item->getPrice(); ?></p>
                     </div>
                     <div class="cart-remove">
-                        <a href=""><i class="fa fa-minus" aria-hidden="true"></i>
+                        <a href="" class="del-product-link" data-id="<? echo $item->getId(); ?>"><i class="fa fa-minus" aria-hidden="true"></i>
                         </a>
                     </div>
                 </div>
