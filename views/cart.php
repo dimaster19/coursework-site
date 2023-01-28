@@ -2,32 +2,41 @@
     <h1>Корзина</h1>
     <div class="cart-items">
         <?
+
+        use App\Models\Product;
+
+        if (isset($products)) {
+            foreach ($products as $item) {
         ?>
-        <div class="cart-item">
-            <div class="cart-product">
-                <div class="cart-product-img">
-                    <img src="./img/product1.jpg" alt="">
+                <div class="cart-item">
+                    <div class="cart-product">
+                        <div class="cart-product-img">
+                            <img src="img/<? echo $item->getMainImage(); ?>" alt="">
+                        </div>
+                        <div class="cart-product-name">
+                            <a href="/product/<? echo str_replace(" ", "-", $item->getName()) ?>"><? echo $item->getName(); ?></a>
+                        </div>
+                    </div>
+                    <div class="cart-count item-to-cart"><input type="number" id="itemCount" class="form-control" min="1" value="1" max="<? echo $item->getCount(); ?>"></div>
+                    <div class="cart-total">
+                        <p><? echo $item->getPrice(); ?></p>
+                    </div>
+                    <div class="cart-remove">
+                        <a href=""><i class="fa fa-minus" aria-hidden="true"></i>
+                        </a>
+                    </div>
                 </div>
-                <div class="cart-product-name">
-                    <a href="">Xiaomi Redmi 9A 2/32Gb Aurora Green</a>
-                </div>
-            </div>
-            <div class="cart-count item-to-cart"><input type="number" id="itemCount" class="form-control" min="1" value="1"></div>
-            <div class="cart-total">
-                <p>8999 ₽</p>
-            </div>
-            <div class="cart-remove">
-                <a href=""><i class="fa fa-minus" aria-hidden="true"></i>
-                </a>
-            </div>
-        </div>
-        <?  ?>
+        <? }
+        } ?>
         <!-- Итог  -->
-        <div class="cart-item d-block ">
-            <div style="font-size: 18px; font-weight: 700; width: 100%; text-align: right; padding: 0 20px">Итого: <span style="color: green">1000</span></div>
-            <div style="font-size: 18px; font-weight: 700; width: 100%; text-align: right; padding: 0 20px">Количество: <span style="color: green">5</span></div>
+        <? if (isset($_SESSION['cart-count'])) {
+            echo '
+        <div class="cart-item d-flex w-100" style="justify-content: center">
+            <div style="font-size: 18px; font-weight: 700; margin: 0 20px">Итого: <span style="color: green">'.$totalPrice.'&nbsp&#8381</span></div>
+            <div style="font-size: 18px; font-weight: 700; margin: 0 20px">Количество: <span style="color: green">'.$_SESSION['cart-count'].'</span></div>
 
         </div>
+        ';} ?>
     </div>
 
     <div class="cart-form">

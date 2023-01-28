@@ -1275,8 +1275,12 @@ specially for product page */
 
     }
 
-    .cart-total,
-    .cart-remove,
+    .cart-remove {
+        width: 10%;
+    }
+    .cart-total {
+        width: 30%;
+    }
     .cart-count {
         width: 20%;
     }

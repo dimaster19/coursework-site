@@ -13,27 +13,38 @@ class CartController
 
     function showPage (RouteCollection $routes) {
 
-        $product = new Product();
+
         $title = 'Корзина';
-        $cartArray = array();
-        foreach ($_SESSION['cart'] as $id){
-            $cartArray[] = $product->readById(implode($id));
+        if (isset($_SESSION['cart']))  {
+        $sessionArray = $_SESSION['cart']; // Хранит ID добавленных товаров
+        $products = array(); // Массив для объектов Product
+        $totalPrice = 0;
+        foreach($sessionArray as $key => $value) {
+            $product = new Product();
+            $products[] = $product->readById(implode($value));
+            $totalPrice += $product->readById(implode($value))->getPrice();
         }
-
-        print_r($cartArray); // Выше я получаю массив объектов {Product}, нужно сделать вывод в cart.php по средствам foreach
-
+    }
         require_once APP_ROOT .'/views/header.php';
         require_once APP_ROOT . '/views/cart.php';
         require_once APP_ROOT .'/views/footer.php';
     }
 
     function start(RouteCollection $routes){
+
         if (isset($_GET['cart']) && isset($_GET['id'])) {
 
             if ($_GET['cart'] == 'add') {
 
                 $this->addToCart( $_GET['id']);
-                echo json_encode(['code' => 'ok', 'answer' => 'Добавлено']);
+                $count = 0;
+                if (isset($_SESSION['cart-count'])) {
+                    $count = $_SESSION['cart-count'];
+                }
+                else {
+                    $count = 0;
+                }
+                echo json_encode(['code' => 'ok', 'answer' =>  $count]);
 
 
             } elseif ($_GET['cart'] == 'delete') {

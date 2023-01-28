@@ -114,9 +114,10 @@
                     </div>
 
                     <div class="header-cart">
-                        <a href="/cart">
+                        <a href="/cart" class="d-flex">
                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                         </a>
+                        <div class="cart-qty"><?if (isset($_SESSION['cart-count'])) echo $_SESSION['cart-count']; else echo 0;?></div>
                     </div>
                     <div class="header-account">
                         <a href="/profile">

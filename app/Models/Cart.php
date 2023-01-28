@@ -4,7 +4,7 @@ namespace App\Models;
 class Cart
 {
     public $productID = '';
-
+    static $cartID = 1;
     function addToCart($id)
     {
 

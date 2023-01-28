@@ -1,4 +1,10 @@
-$(function() {
+$(function () {
+
+    function showCartCount(count) {
+     
+        $('.cart-qty').text(count);
+    }
+
 
     $('.add-product-link').on('click', function (e) {
         e.preventDefault();
@@ -7,11 +13,12 @@ $(function() {
         $.ajax({
             url: 'addtocart',
             type: 'GET',
-            data: {cart: 'add', id: id},
+            data: { cart: 'add', id: id },
             dataType: 'json',
             success: function (res) {
                 if (res.code == 'ok') {
-                    alert(res.answer);
+                    showCartCount(res.answer);
+                    
                 } else {
                     alert(res.answer);
                 }
