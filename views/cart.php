@@ -8,7 +8,7 @@
         if (isset($products)) {
             foreach ($products as $item) {
         ?>
-                <div class="cart-item">
+                <div class="cart-item " id="<?echo $item->getId();?>">
                     <div class="cart-product">
                         <div class="cart-product-img">
                             <img src="img/<? echo $item->getMainImage(); ?>" alt="">
@@ -32,8 +32,8 @@
         <? if (isset($_SESSION['cart-count'])) {
             echo '
         <div class="cart-item d-flex w-100" style="justify-content: center">
-            <div style="font-size: 18px; font-weight: 700; margin: 0 20px">Итого: <span style="color: green">'.$totalPrice.'&nbsp&#8381</span></div>
-            <div style="font-size: 18px; font-weight: 700; margin: 0 20px">Количество: <span style="color: green">'.$_SESSION['cart-count'].'</span></div>
+            <div style="font-size: 18px; font-weight: 700; margin: 0 20px" id="totalPrioce">Итого: <span style="color: green">'.$totalPrice.'&nbsp&#8381</span></div>
+            <div style="font-size: 18px; font-weight: 700; margin: 0 20px" id="totalCount">Количество: <span style="color: green">'.$_SESSION['cart-count'].'</span></div>
 
         </div>
         ';} ?>

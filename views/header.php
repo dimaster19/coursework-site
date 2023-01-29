@@ -112,16 +112,18 @@
                         <input type="text" placeholder="Поиск по сайту" />
                         <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                     </div>
-
                     <div class="header-cart">
-                        <a href="/cart" class="d-flex">
+                        <a class="header-link" href="/cart" >
                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                            Корзина
                         </a>
-                        <div class="cart-qty"><?if (isset($_SESSION['cart-count'])) echo $_SESSION['cart-count']; else echo 0;?></div>
+                        <div class="cart-qty"><p class="cart-qty-p"><? if (isset($_SESSION['cart-count'])) echo strval($_SESSION['cart-count']);
+                                                else echo 0; ?></p></div>
                     </div>
                     <div class="header-account">
-                        <a href="/profile">
+                        <a class="header-link" href="/profile">
                             <i class="fa fa-user" aria-hidden="true"></i>
+                            Аккаунт
                         </a>
                     </div>
                 </div>

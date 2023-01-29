@@ -30,22 +30,15 @@ class CartController
         }
 
 
-
-        // if (isset($_SESSION['repeatedCart'])) {
-        //     $arr = [];
-        //     array_walk_recursive($_SESSION['repeatedCart'], function ($item, $key) use (&$arr) { // Двумерный массив в одномерный
-        //         $arr[] = $item;
-        //     });
-        // }
-        // $_SESSION['repeatedCart'] = $_SESSION['cart'];
-        // $arr =   $_SESSION['repeatedCart'];
-
-
         require_once APP_ROOT . '/views/header.php';
         require_once APP_ROOT . '/views/cart.php';
         require_once APP_ROOT . '/views/footer.php';
     }
 
+
+    function showCart()
+    {
+    }
     function cartAction(RouteCollection $routes)
     {
 
@@ -61,10 +54,16 @@ class CartController
                     $count = 0;
                 }
                 echo json_encode(['code' => 'ok', 'answer' =>  $count]);
-            } elseif ($_GET['cart'] == 'delete') {
+            } elseif ($_GET['cart'] == 'del') {
 
                 $this->deleteFromCart($_GET['id']);
-                echo json_encode(['code' => 'ok', 'answer' => 'ok']);
+                $count = 0;
+                if (isset($_SESSION['cart-count'])) {
+                    $count = $_SESSION['cart-count'];
+                } else {
+                    $count = 0;
+                }
+                echo json_encode(['code' => 'deleted', 'answer' => $_GET['id'], 'count' =>  $count]);
             } else {
                 echo json_encode(['code' => 'error', 'answer' => 'error']);
             }
@@ -78,9 +77,10 @@ class CartController
         $cart = new Cart;
         $cart->addToCart($id);
     }
-    function deleteFromCart()
+    function deleteFromCart($id)
     {
 
         $cart = new Cart;
+        $cart->delFromCart($id);
     }
 }

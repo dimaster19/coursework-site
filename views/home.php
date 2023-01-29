@@ -113,7 +113,6 @@
     </div>
     <div class="products">
         <?php
-
         while ($result = pg_fetch_array($query)) {
         ?>
             <div class="product-item" id="<? echo $result[0]; ?>">

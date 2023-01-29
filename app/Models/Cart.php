@@ -38,5 +38,12 @@ class Cart
     }
     function delFromCart($id)
     {
+        if (isset($_SESSION['cart'][$id])) {
+            unset($_SESSION['cart'][$id]);
+            --$_SESSION['cart-count'];
+            if ($_SESSION['cart-count'] == 0) {
+                unset($_SESSION['cart-count']);
+            }
+        } $_SESSION['repeatedCart'] = $_SESSION['cart'];
     }
 }
